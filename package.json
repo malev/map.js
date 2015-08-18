@@ -1,0 +1,22 @@
+{
+  "name": "map.js",
+  "author": "Marcos Vanetta",
+  "devDependencies": {
+    "babelify": "6.1.x",
+    "browserify": "11.0.x",
+    "browserify-shim": "3.8.x",
+    "gulp": "3.9.x",
+    "gulp-sourcemaps": "1.5.x",
+    "vinyl-buffer": "1.0.x",
+    "vinyl-source-stream": "1.1.0",
+    "watchify": "3.3.x"
+  },
+  "browserify-shim": {
+    "jquery": "$"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  }
+}
