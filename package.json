@@ -2,14 +2,20 @@
   "name": "map.js",
   "author": "Marcos Vanetta",
   "devDependencies": {
+    "babel": "5.8.x",
     "babelify": "6.1.x",
+    "browser-sync": "^2.8.2",
     "browserify": "11.0.x",
     "browserify-shim": "3.8.x",
-    "gulp": "3.9.x",
+    "generator-babel-boilerplate": "^5.1.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-sass": "2.0.x",
     "gulp-sourcemaps": "1.5.x",
     "vinyl-buffer": "1.0.x",
     "vinyl-source-stream": "1.1.0",
-    "watchify": "3.3.x"
+    "watchify": "3.3.x",
+    "yo": "^1.4.7"
   },
   "browserify-shim": {
     "jquery": "$"
