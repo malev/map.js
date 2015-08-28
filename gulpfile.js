@@ -1,10 +1,12 @@
 var gulp = require('gulp');
+var browserSync = require('browser-sync').create();
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babel = require('babelify');
+var sass = require('gulp-sass');
 
 function compile(watch) {
   var bundler = watchify(browserify('./src/index.js', { debug: true }).transform(babel));
@@ -29,10 +31,23 @@ function compile(watch) {
   rebundle();
 }
 
+gulp.task('sass', function () {
+  gulp.src('./src/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./build/css'));
+});
+
 function watch() {
   return compile(true);
 };
 
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: "./src"
+        }
+    });
+});
 gulp.task('build', function() { return compile(); });
 gulp.task('watch', function() { return watch(); });
 gulp.task('default', ['watch']);
