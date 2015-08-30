@@ -7,6 +7,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var babel = require('babelify');
 var sass = require('gulp-sass');
+var nunjucks = require('gulp-nunjucks');
 
 function compile(watch) {
   var bundler = watchify(browserify('./src/index.js', { debug: true }).transform(babel));
@@ -41,6 +42,18 @@ function watch() {
   return compile(true);
 };
 
+gulp.task('sass', function () {
+  gulp.src('./src/css/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./build/css'));
+});
+
+gulp.task('html', function () {
+    return gulp.src('./src/**/*.html')
+        .pipe(nunjucks())
+        .pipe(gulp.dest('./build'));
+});
+
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
@@ -50,4 +63,4 @@ gulp.task('browser-sync', function() {
 });
 gulp.task('build', function() { return compile(); });
 gulp.task('watch', function() { return watch(); });
-gulp.task('default', ['watch']);
+gulp.task('default', ['html', 'sass']);
